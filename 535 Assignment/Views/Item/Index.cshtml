@@ -1,0 +1,79 @@
+﻿@model IEnumerable<_535_Assignment.Models.Item>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<html class="BGColour3">
+<body class="BGColour3">
+    @Html.AntiForgeryToken()
+<div class="card-container">
+    @foreach(var product in Model)
+    {
+
+        <div class="single-card card shadow BGColour4 TextColour1">
+            <h2>@product.ItemName</h2>
+            <h3>$@product.UnitPrice.ToString("0.00")</h3>
+            <p>@product.Unit</p>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <input type="button" class="border-dark rounded TextColour4 fw-bold" value="Add to List" id="AddToListButton" data-value="@product.ItemId" />
+            }
+           @if (User.IsInRole("Admin"))
+            {
+            <input type="button" value="Edit" class="border-dark rounded TextColour4 fw-bold my-2" id="ShowEditModalButton" data-value="@product.ItemId" />
+            }
+             </div>
+    }
+
+</div>
+    <div class="modal fade" id="addToListModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content BGColour1">
+                <div class="modal-header BGColour2 TextColour3">
+                    <h5 class="modal-title ">Add Item To List</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body BGColour3" id="modalBody">
+                    <form id="AddItemToListForm">
+                        <div class="col" id="ddlContainer">
+                            <select class="form-select" disabled>
+                                <option>Loading</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label class="TextColour2 fw-bold">Quantity: </label>
+                            <input type="number" name="productQuantity" class="form-control" value="1" min="1" max="99"/>
+                        </div>
+                        <div class="col">
+                            <input type="submit" value="Add List" class="form-control my-3 TextColour1 BGColour4" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editListModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content BGColour1">
+                <div class="modal-header BGColour2 TextColour3">
+                    <h5 class="modal-title" id="editModalTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body BGColour3" id="editModalBody">
+                    <p>blep</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @{ 
+        <script src="js/Item.js"></script>
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

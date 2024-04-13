@@ -1,0 +1,134 @@
+html {
+    font-size: 16px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 24px;
+  }
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.BGColour1 {background-color: var(--colour-1) !important}
+.BGColour2 {background-color: var(--colour-2) !important}
+.BGColour3 {background-color: var(--colour-3) !important}
+.BGColour4 {background-color: var(--colour-4) !important}
+
+.TextColour1 {color: var(--colour-5) !important}
+.TextColour2 {color: var(--colour-6) !important}
+.TextColour3 {color: var(--colour-7) !important}
+.TextColour4 {color: var(--colour-8) !important}
+
+.BorderColour1 {border-color: var(--colour-6) !important}
+
+h1 {
+    font-size: 36px;
+}
+/* *{border: 1px solid grey !important} /**/
+
+.LogoBackground {
+    height: 20vh;
+    width: 20vh
+}
+.RegistrationBackground {
+    height: 50%;
+    width: 50%;
+    padding: 10px;
+}
+.TextBackground {
+    height: 50%;
+    width: 50%;
+}
+
+.buttonSettings {
+    height: 8vh;
+    width: 20vh;
+}
+
+.pop {
+    animation-name: animate-pop;
+   animation-duration: 6s;
+}
+
+@keyframes animate-pop {
+    0% {
+        opacity: .3;
+        
+    }
+
+    100% {
+        opacity: 1;
+        
+    }
+}
+
+@media (min-width: 200px) {
+
+    .single-card {
+        padding: 10px;
+        flex: 0 1 calc(100% - 1em);
+        margin-top: 1rem;
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .single-card {
+        flex: 0 1 calc(50% - 1em);
+        margin-top: 1rem;
+        text-align: center;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .single-card {
+        flex: 0 1 calc(25% - 1em);
+        margin-top: 1rem;
+        text-align: center;
+    }
+}
+
+.SVGClass {
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bold;
+    font-stretch: normal;
+    font-size: 85.33333588px;
+    line-height: 1.25;
+    font-family: sans-serif;
+    -inkscape-font-specification: 'sans-serif, Bold';
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-feature-settings: normal;
+    text-align: start;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    writing-mode: lr-tb;
+    text-anchor: start;
+    fill: #ffffff;
+    fill-opacity: 1;
+    stroke: none;
+}
+
+.displayImage {
+    width: 80%;
+    height: auto
+}

@@ -1,0 +1,137 @@
+﻿@using System.Security.Claims;
+@{
+    string? theme = Context?.Session.GetString("theme");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - _535_Assignment</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+</head>
+
+@if (!String.IsNullOrEmpty(theme) && theme == "dark")
+{
+    <link rel="stylesheet" href="~/css/NightTime.css" id="themeStyle" />
+}
+else
+{
+    <link rel="stylesheet" href="~/css/DayTime.css" id="themeStyle" />
+}
+@Html.AntiForgeryToken()
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 BGColour2">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <svg xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#"
+                         xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#"
+                         xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
+                         xmlns:xmpG="http://ns.adobe.com/xap/1.0/g/"
+                         xmlns:stDim="http://ns.adobe.com/xap/1.0/sType/Dimensions#"
+                         xmlns:xmpTPg="http://ns.adobe.com/xap/1.0/t/pg/"
+                         xmlns:xmpGImg="http://ns.adobe.com/xap/1.0/g/img/"
+                         xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+                         xmlns:xmpRights="http://ns.adobe.com/xap/1.0/rights/"
+                         xmlns:x="adobe:ns:meta/"
+                         xmlns:dc="http://purl.org/dc/elements/1.1/"
+                         xmlns:cc="http://creativecommons.org/ns#"
+                         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                         xmlns:svg="http://www.w3.org/2000/svg"
+                         xmlns="http://www.w3.org/2000/svg"
+                         xml:space="preserve"
+                         enable-background="new 0 0 422 437"
+                         viewBox="0 0 422 437"
+                         height="50px"
+                         width="50px"
+                         y="0px"
+                         x="0px"
+                         id="cart"
+                         version="1.1"><defs id="defs17" />
+<path id="path12"
+      d="M400.5,201.5l-274.5,45c-25.5,22.5,1.504,42,1.504,42L396,290v37.5l-295.5-3  c-12-7.5-20.992-31.5-24-52.5c-3-21,19.5-43.5,19.5-43.5L49.508,53H24l-6-33h64.504L99,74l307.5-1.5L400.5,201.5z M153,341  c22.367,0,40.5,18.129,40.5,40.5c0,22.367-18.133,40.5-40.5,40.5c-22.371,0-40.496-18.133-40.496-40.5  C112.504,359.129,130.629,341,153,341z M351,341c22.375,0,40.5,18.129,40.5,40.5c0,22.367-18.125,40.5-40.5,40.5  c-22.363,0-40.5-18.133-40.5-40.5C310.5,359.129,328.637,341,351,341z"
+      clip-rule="evenodd"
+      fill-rule="evenodd" />
+<text id="text21"
+      y="178.57475"
+      x="140.10135"
+      class="SVGClass"
+      xml:space="preserve"><tspan y="178.57475"
+                                  x="140.10135"
+                                  id="tspan19">S W</tspan></text>
+</svg>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex">
+                    <ul class="navbar-nav flex-grow-1 align-content-center align-items-center">
+                        @if (Context.User.Claims.Where(c => c.Type == ClaimTypes.Name).FirstOrDefault() != null)
+                        {
+                            <li class="nav-item  rounded  BGColour4 nav-item topnav-right mx-2">
+                            <b>
+                                <a class="nav-link TextColour1" asp-area="" asp-controller="ShoppingList" asp-action="Index">Shopping Lists</a>
+                            </b>
+                        </li>
+                        }
+                       
+                        <li class="nav-item rounded  BGColour4 nav-item topnav-right mx-2">
+                            <b>
+                                <a class="nav-link TextColour1" asp-area="" asp-controller="Item" asp-action="Index">Catalogue</a>
+                            </b>
+                        </li>
+                        <li class="nav-item rounded  BGColour4 nav-item topnav-right mx-2">
+                            <b>
+                                <a class="nav-link TextColour1" asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a>
+                            </b>
+                        </li>
+                        <li class="nav-item rounded  BGColour4 nav-item topnav-right mx-2">
+                            <b>
+                                <a class="nav-link TextColour1" asp-area="" asp-controller="File" asp-action="Index">Upload</a>
+                            </b>
+                        </li>
+                    </ul>
+                <div class="rounded nav-item topnav-right mx-2 TextColour3">
+                    <em>
+                        <b>Hello, </b> @if (Context.User.Claims.Where(c => c.Type == ClaimTypes.Name).FirstOrDefault() != null)
+                            {
+                                @Context.User.Claims.Where(c => c.Type == ClaimTypes.Name).FirstOrDefault().Value;
+                                
+                        }
+                    </em>
+                </div>
+                    <div class="rounded  BGColour4 nav-item topnav-right mx-2">
+                        @if (Context.User.Claims.Where(c => c.Type == ClaimTypes.Name).FirstOrDefault() != null)
+                        {
+                            <a class="nav-link TextColour1" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+                        }
+                        else
+                        {
+                            <a class="nav-link TextColour1" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                        }
+
+                </div>
+                    <input value="Change" type="button" class="nav-link rounded BGColour4 nav-item topnav-right TextColour1" id="ChangeThemeButton" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+</body>
+</html>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+

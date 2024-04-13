@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var img = (string)ViewData["ImageSource"];
+    var imgAlt = (string)ViewData["ImageAlt"];
+}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - _535_Assignment</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+@foreach (var error in ViewData.ModelState)
+{
+    if (error.Value.Errors.Count > 0)
+    {
+        <div class="row d-flex justify-content-center">
+            <div class="col-8 card m-4 text-danger">
+                <h4>@error.Key</h4>
+                <ul>
+                    @foreach (var errorMessage in error.Value.Errors)
+                    {
+                        <li>@errorMessage.ErrorMessage</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+}
+
+
+<html class="BGColour3">
+<body class="BGColour3">
+<div class="row d-flex justify-content-center">
+    <div class="col-8 card align-items-center p-3 BGColour4 TextColour3">
+        <h2>Upload a File</h2>
+        <form method="post" enctype="multipart/form-data" asp-controller="File" asp-action="ImageUpload">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <p>Upload a file using this form:</p>
+                    <input type="file" name="file" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="Upload" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row d-flex justify-content-center mt-3">
+        <div class="col-8 card align-items-center p-3  BGColour4 TextColour3">
+
+        <h2>Display an Image</h2>
+        <form method="post" asp-action="LoadImage">
+            <input type="text" placeholder="filename.jpg" name="fileName" />
+            <input type="submit" value="Display" />
+        </form>
+
+        <img src="@img" alt="@imgAlt" class="displayImage" />
+    </div>
+</div>
+
+<div class="row d-flex justify-content-center mt-3">
+        <div class="col-8 card align-items-center p-3  BGColour4 TextColour3">
+        <h2>Download a File</h2>
+
+        <form method="post" asp-action="DownloadFile">
+            <input type="text" placeholder="filename.jpg" name="fileName" />
+            <input type="submit" value="Download" />
+        </form>
+    </div>
+</div>
+</body>
+</html>

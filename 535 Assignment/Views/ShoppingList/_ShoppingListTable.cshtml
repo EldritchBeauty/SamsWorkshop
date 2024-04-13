@@ -1,0 +1,51 @@
+﻿@model IEnumerable<_535_Assignment.Models.Item>
+
+<table class="table TextColour2">
+    <thead>
+        <tr>
+            <th>
+                Item
+            </th>
+            <th>
+                Unit
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Total Price
+            </th>
+        </tr>
+    </thead>
+    <tbody class="TextColour2">
+@foreach (var item in Model) {
+        <tr class="BorderColour1">
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unit)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemList.Where(c => c.ItemId == item.ItemId).FirstOrDefault().Quantity)
+            </td>
+            <td>
+                $@(item.UnitPrice * item.ItemList.Where(c => c.ItemId == item.ItemId).FirstOrDefault().Quantity)
+            </td>
+            <td>
+                    <input type="button" class="rounded BGColour4 TextColour1" value="Remove" id="RemoveItemButton" data-value="@item.ItemId"/>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<b class="TextColour2">Total Cost: </b>
+<div class="TextColour2">
+    $@Model.Sum(item => item.UnitPrice * item.ItemList.Where(c => c.ItemId == item.ItemId).FirstOrDefault().Quantity)
+</div>
