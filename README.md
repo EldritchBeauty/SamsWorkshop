@@ -9,3 +9,6 @@ Functionality Includes:
 - Youtube video embed.
 - Database generation and migration, automated population. Database also has authorisation applied.
 - Users may create and save shopping lists, add and remove items to said shopping lists.
+
+If, for some reason, you want to run this application, please know that you will need a server and SSMS for it to work. You might also run into trouble with 
+the authorisation stuff.
