@@ -12,3 +12,5 @@ Functionality Includes:
 
 If, for some reason, you want to run this application, please know that you will need a server and SSMS for it to work. You might also run into trouble with 
 the authorisation stuff.
+
+Create a migration in the console.
